@@ -1,25 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import Form from './components/Form';
+import Table from './components/Table';
+
 
 function App() {
+  const [books, setBooks] = useState([]);
+
+  const handleAddBook = (title, author) => {
+    const newBook = { title, author };
+    setBooks([...books, newBook]);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='container'>
+      <h1>Formulario</h1>
+      <Form addBook={handleAddBook}/>
+      <h1>Tabla</h1>
+      <Table books={books} />
     </div>
   );
-}
+};
 
 export default App;
